@@ -40,4 +40,4 @@ class Magazine
         end
     end
 end
-//
+
