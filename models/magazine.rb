@@ -27,8 +27,8 @@ def article_titles
 end
 
 def contributing_authors
-  contributors.filter {|a| articles.count {|b| b.author.name == a.name } > 2 }
-  #pulse.contributing_authors.map { |au| au.name }).to eq(["David", "Linet", "Erick"]
+  contributors.filter {|a| articles.count {|b| b.author.name != a.name } > 2 }
+  
 end
 
 private
