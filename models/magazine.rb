@@ -1,43 +1,44 @@
 class Magazine
-    attr_accessor :name, :category
 
-    @@magazine = []
 
-    def initialize(name,category)
-        @name = name
-        @category = category
-        @@magazines << self
-    end
+attr_accessor :name, :category
 
-    def self.all
-        @@magazines
-    end
-
-    def contributors
-        articles_for_magazine_instance.map {|filterd_article| filterd_article.author}
-    end
-
-    def self.find_by_name magazine_name
-        Magazine.all.find {|magazine| magazine.name == magazine_name}
-    end
-
-    def article_titles
-        articles_for_magazine_instance.map {|filterd_article| filterd_article.title}
-    end
-
-    def contributing_authors
-        author_tally = contributors.tally
-        author_tally.filter do |key, value|
-            value >= 2
-        end
-    end
-
-    private
-
-    def articles_for_magazine_instance
-        Article.all.filter do |article|
-            article.magazine == self
-        end
-    end
+@@all = []
+def initialize(name, category)
+  @name = name
+  @category = category
+  @@all << self
 end
+
+def self.all
+  @@all
+end
+
+def contributors
+  articles.collect { |a| a.author }.uniq
+end
+
+def self.find_by_name n
+  @@all.find { |m| m.name == n }
+end
+
+def article_titles
+  articles.collect { |m| m.title }
+end
+
+def contributing_authors
+  contributors.filter {|a| articles.count {|b| b.author.name == a.name } > 2 }
+  #pulse.contributing_authors.map { |au| au.name }).to eq(["David", "Linet", "Erick"]
+end
+
+private
+def articles
+  Article.all.select { |a| a.magazine.name == self.name }
+end
+
+
+ 
+end
+
+
 
