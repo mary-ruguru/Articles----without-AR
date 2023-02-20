@@ -22,4 +22,4 @@ class Article
         @magazine
     end
 end
-//
+
