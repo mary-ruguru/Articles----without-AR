@@ -8,7 +8,7 @@ end
 
 author1 = Author.new("Mary Ann")
 author2 = Author.new("Ruguru Njuguna")
-author3 = Author.new("Ann Mary")
+author3 = Author.new("Ann Marya")
 
 magazine1 = Magazine.new("Design","Design ")
 magazine2 = Magazine.new("Craft","Craft")
